@@ -1,7 +1,7 @@
 # 2048i
 A fork of [2048](https://github.com/gabrielecirulli/2048) which is a small clone of [1024](https://play.google.com/store/apps/details?id=com.veewo.a1024), based on [Saming's 2048](http://saming.fr/p/2048/) (also a clone).
 
-Unlike 2048, numbers are multiplied together instead of added. Also, negatives and imaginary numbers show up. Have fun!
+Unlike 2048, negatives and imaginary numbers show up. They can be multiplied together to get a real number. Positive numbers act like they do in 2048. Have fun!
 
 Made just for fun. [Play it here!](http://matthewbauer.github.io/2048i/)
 
@@ -17,7 +17,7 @@ Many thanks to [rayhaanj](https://github.com/rayhaanj), [Mechazawa](https://gith
 ## Contributing
 Changes and improvements are more than welcome! Feel free to fork and open a pull request. Please make your changes in a specific branch and request to pull into `master`! If you can, please make sure the game fully works before sending the PR, as that will help speed up the process.
 
-You can find the same information in the [contributing guide.](https://github.com/gabrielecirulli/2048/blob/master/CONTRIBUTING.md)
+You can find the same information in the [contributing guide.](https://github.com/matthewbauer/2048/blob/master/CONTRIBUTING.md)
 
 ## License
 2048i is licensed under the [MIT license.](https://github.com/matthewbauer/2048i/blob/master/LICENSE.txt)
