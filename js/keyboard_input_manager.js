@@ -3,35 +3,35 @@ function KeyboardInputManager() {
 
   if (window.navigator.msPointerEnabled) {
     //Internet Explorer 10 style
-    this.eventTouchstart    = "MSPointerDown";
-    this.eventTouchmove     = "MSPointerMove";
-    this.eventTouchend      = "MSPointerUp";
+    this.eventTouchstart = "MSPointerDown";
+    this.eventTouchmove = "MSPointerMove";
+    this.eventTouchend = "MSPointerUp";
   } else {
-    this.eventTouchstart    = "touchstart";
-    this.eventTouchmove     = "touchmove";
-    this.eventTouchend      = "touchend";
+    this.eventTouchstart = "touchstart";
+    this.eventTouchmove = "touchmove";
+    this.eventTouchend = "touchend";
   }
 
   this.listen();
 }
 
-KeyboardInputManager.prototype.on = function (event, callback) {
+KeyboardInputManager.prototype.on = function(event, callback) {
   if (!this.events[event]) {
     this.events[event] = [];
   }
   this.events[event].push(callback);
 };
 
-KeyboardInputManager.prototype.emit = function (event, data) {
+KeyboardInputManager.prototype.emit = function(event, data) {
   var callbacks = this.events[event];
   if (callbacks) {
-    callbacks.forEach(function (callback) {
+    callbacks.forEach(function(callback) {
       callback(data);
     });
   }
 };
 
-KeyboardInputManager.prototype.listen = function () {
+KeyboardInputManager.prototype.listen = function() {
   var self = this;
 
   var map = {
@@ -46,14 +46,14 @@ KeyboardInputManager.prototype.listen = function () {
     87: 0, // W
     68: 1, // D
     83: 2, // S
-    65: 3  // A
+    65: 3 // A
   };
 
   // Respond to direction keys
-  document.addEventListener("keydown", function (event) {
+  document.addEventListener("keydown", function(event) {
     var modifiers = event.altKey || event.ctrlKey || event.metaKey ||
-                    event.shiftKey;
-    var mapped    = map[event.which];
+      event.shiftKey;
+    var mapped = map[event.which];
 
     if (!modifiers) {
       if (mapped !== undefined) {
@@ -77,9 +77,9 @@ KeyboardInputManager.prototype.listen = function () {
   var touchStartClientX, touchStartClientY;
   var gameContainer = document.getElementsByClassName("game-container")[0];
 
-  gameContainer.addEventListener(this.eventTouchstart, function (event) {
+  gameContainer.addEventListener(this.eventTouchstart, function(event) {
     if ((!window.navigator.msPointerEnabled && event.touches.length > 1) ||
-        event.targetTouches > 1) {
+      event.targetTouches > 1) {
       return; // Ignore if touching with more than 1 finger
     }
 
@@ -94,13 +94,13 @@ KeyboardInputManager.prototype.listen = function () {
     event.preventDefault();
   });
 
-  gameContainer.addEventListener(this.eventTouchmove, function (event) {
+  gameContainer.addEventListener(this.eventTouchmove, function(event) {
     event.preventDefault();
   });
 
-  gameContainer.addEventListener(this.eventTouchend, function (event) {
+  gameContainer.addEventListener(this.eventTouchend, function(event) {
     if ((!window.navigator.msPointerEnabled && event.touches.length > 0) ||
-        event.targetTouches > 0) {
+      event.targetTouches > 0) {
       return; // Ignore if still touching with one or more fingers
     }
 
@@ -127,17 +127,17 @@ KeyboardInputManager.prototype.listen = function () {
   });
 };
 
-KeyboardInputManager.prototype.restart = function (event) {
+KeyboardInputManager.prototype.restart = function(event) {
   event.preventDefault();
   this.emit("restart");
 };
 
-KeyboardInputManager.prototype.keepPlaying = function (event) {
+KeyboardInputManager.prototype.keepPlaying = function(event) {
   event.preventDefault();
   this.emit("keepPlaying");
 };
 
-KeyboardInputManager.prototype.bindButtonPress = function (selector, fn) {
+KeyboardInputManager.prototype.bindButtonPress = function(selector, fn) {
   var button = document.querySelector(selector);
   button.addEventListener("click", fn.bind(this));
   button.addEventListener(this.eventTouchend, fn.bind(this));
